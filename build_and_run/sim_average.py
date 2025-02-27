@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import time
 import numpy as np
-'''!!!IF YOUR SIMULATION IS RUNNING FOREVER CLICK ON THE COMMAND LINE THEN PRESS CMD+C !!!'''
+'''!!!IF YOUR SIMULATION IS RUNNING FOREVER CLICK ON THE COMMAND LINE THEN PRESS CMD+C or ctrl+c for windows!!!'''
 
 
 start_time = time.time()
