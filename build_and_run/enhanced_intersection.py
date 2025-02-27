@@ -9,7 +9,7 @@ class Intersection:
         lane_space = 3.5
         intersection_size = 24
         island_width = 2
-        length = 100
+        length = 100 #each square on the simulation is 10 so 100 means 10 squares in each direction
 
 
 #---------------------------------------------------------------Variables----------------------------------------------------------------------------#
@@ -63,21 +63,27 @@ class Intersection:
         self.sim.create_quadratic_bezier_curve((-lane_space*3/2 - island_width/2, -intersection_size/2), (-lane_space*3/2 - island_width/2, -lane_space*3/2 - island_width/2), (-intersection_size/2, -lane_space*3/2 - island_width/2))
         self.sim.create_quadratic_bezier_curve((-intersection_size/2, lane_space*3/2 + island_width/2), (-lane_space*3/2 - island_width/2, lane_space*3/2 + island_width/2), (-lane_space*3/2 - island_width/2, intersection_size/2))
 
-        #Left turn
+        #Left turn - for no left turn lanes - original
             #paths 28-31
-        self.sim.create_quadratic_bezier_curve((lane_space/2 + island_width/2, intersection_size/2), (lane_space/2 + island_width/2, -lane_space/2 - island_width/2), (-intersection_size/2, -lane_space/2 - island_width/2))
-        self.sim.create_quadratic_bezier_curve((intersection_size/2, -lane_space/2 - island_width/2), (-lane_space/2 - island_width/2, -lane_space/2 - island_width/2), (-lane_space/2 - island_width/2, intersection_size/2))
-        self.sim.create_quadratic_bezier_curve((-lane_space/2 - island_width/2, -intersection_size/2), (-lane_space/2 - island_width/2, lane_space/2 + island_width/2), (intersection_size/2, lane_space/2 + island_width/2))
-        self.sim.create_quadratic_bezier_curve((-intersection_size/2, lane_space/2 + island_width/2), (lane_space/2 + island_width/2, lane_space/2 + island_width/2), (lane_space/2 + island_width/2, -intersection_size/2))
+        #self.sim.create_quadratic_bezier_curve((lane_space/2 + island_width/2, intersection_size/2), (lane_space/2 + island_width/2, -lane_space/2 - island_width/2), (-intersection_size/2, -lane_space/2 - island_width/2))
+        #self.sim.create_quadratic_bezier_curve((intersection_size/2, -lane_space/2 - island_width/2), (-lane_space/2 - island_width/2, -lane_space/2 - island_width/2), (-lane_space/2 - island_width/2, intersection_size/2))
+        #self.sim.create_quadratic_bezier_curve((-lane_space/2 - island_width/2, -intersection_size/2), (-lane_space/2 - island_width/2, lane_space/2 + island_width/2), (intersection_size/2, lane_space/2 + island_width/2))
+        #self.sim.create_quadratic_bezier_curve((-intersection_size/2, lane_space/2 + island_width/2), (lane_space/2 + island_width/2, lane_space/2 + island_width/2), (lane_space/2 + island_width/2, -intersection_size/2))
 
-        #Dedicated Left-Turn Lanes (Paths 32-35) - added
-        self.sim.create_segment((lane_space*5/2 + island_width/2, length + intersection_size/2), (lane_space*5/2 + island_width/2, intersection_size/2))  #South Approach
+        #Dedicated Left-Turn Lanes (Paths 32-35) - added the - 10 is an offset
+        self.sim.create_segment((lane_space*5/2 + island_width/2 - 10 , length + intersection_size/2), (lane_space*5/2 + island_width/2 - 10, intersection_size/2))  #South Approach
         self.sim.create_segment((length + intersection_size/2, -lane_space*5/2 - island_width/2), (intersection_size/2, -lane_space*5/2 - island_width/2))  #East Approach
         self.sim.create_segment((-lane_space*5/2 - island_width/2, -length - intersection_size/2), (-lane_space*5/2 - island_width/2, -intersection_size/2))  #North Approach
         self.sim.create_segment((-length - intersection_size/2, lane_space*5/2 + island_width/2), (-intersection_size/2, lane_space*5/2 + island_width/2))  #West Approach
 
-        
-    #all interfearing paths
+        # Dedicated Left-Turn Paths (Paths 36-39)
+        self.sim.create_quadratic_bezier_curve((lane_space*5/2 + island_width/2, intersection_size/2), (lane_space*5/2 + island_width/2, -lane_space/2 - island_width/2), (-intersection_size/2, -lane_space/2 - island_width/2))  # South to East
+        self.sim.create_quadratic_bezier_curve((intersection_size/2, -lane_space*5/2 - island_width/2), (-lane_space/2 - island_width/2, -lane_space*5/2 - island_width/2), (-lane_space/2 - island_width/2, intersection_size/2))  # East to North
+        self.sim.create_quadratic_bezier_curve((-lane_space*5/2 - island_width/2, -intersection_size/2), (-lane_space*5/2 - island_width/2, lane_space/2 + island_width/2), (intersection_size/2, lane_space/2 + island_width/2))  # North to West
+        self.sim.create_quadratic_bezier_curve((-intersection_size/2, lane_space*5/2 + island_width/2), (lane_space/2 + island_width/2, lane_space*5/2 + island_width/2), (lane_space/2 + island_width/2, -intersection_size/2))  # West to South
+
+
+    #all interfearing paths - original
     
         #left turn from the South intersects with the inner and outer straights coming from the North
         self.sim.define_interfearing_paths([0, 28], [4, 20],turn=True)
@@ -91,6 +97,7 @@ class Intersection:
         #left turn from the West intersects with the inner and outer straights coming from the East
         self.sim.define_interfearing_paths([6, 31], [2, 18],turn=True)
         self.sim.define_interfearing_paths([6, 31], [3, 19],turn=True)
+
 
         '''
         this section creates vehicle generators, we have two vehicle generators one; that creates regular vehicles (self.vg)
