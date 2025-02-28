@@ -114,30 +114,31 @@ class Intersection:
             # 'path' defines the order of segments the vehicle will drive over
             #'v_max' defines the fastest speed a vehicle can drive at
 
-            'vehicles': [
-                #South [Inner Straight, Outer Straight, Right Turn, Left Turn]
+            'vehicles': [ 
+                #South [Inner Straight, Outer Straight, Right Turn, Left Turn] - change the left turn values to fix the path taken -4 on the value for the removed lanes
                 (1, {'path': [0, 16, 12], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
                 (1, {'path': [1, 17, 13], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
                 (1, {'path': [1, 24, 11], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
-                (1, {'path': [0, 28, 14], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
-
+                (1, {'path': [28, 32, 14], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
+                #remember -4 for the removed lanes!!!!!
+                
                 #East [Inner Straight, Outer Straight, Right Turn, Left Turn]
                 (1, {'path': [2, 18, 14], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
                 (1, {'path': [3, 19, 15], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
                 (1, {'path': [3, 25, 13], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
-                (1, {'path': [2, 29, 8], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
+                (1, {'path': [29, 33, 8], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
 
                 #North [Inner Straight, Outer Straight, Right Turn, Left Turn]
                 (1, {'path': [4, 20, 8], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
                 (1, {'path': [5, 21, 9], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
                 (1, {'path': [5, 26, 15], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
-                (1, {'path': [4, 30, 10], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
+                (1, {'path': [30, 34, 10], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
            
                 #West [Inner Straight, Outer Straight, Right Turn, Left Turn]
                 (1, {'path': [6, 22, 10], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
                 (1, {'path': [7, 23, 11], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
                 (1, {'path': [7, 27, 9], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
-                (1, {'path': [6, 31, 12], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
+                (1, {'path': [31, 35, 12], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
                 ], 'vehicle_rate' : self.vehicle_rate*(1-self.self_driving_vehicle_proportion) 
             })
         
