@@ -40,13 +40,13 @@ class Intersection:
         # Intersection out
             #paths 8-15
         self.sim.create_segment((-lane_space/2 - island_width/2, intersection_size/2), (-lane_space/2 - island_width/2, length + intersection_size/2))
-        self.sim.create_segment((-lane_space*3/2 - island_width/2, intersection_size/2), (-lane_space*3/2 - island_width/2, length + intersection_size/2))
+        self.sim.create_segment((-lane_space*3/2 - island_width/2, intersection_size/2), (-lane_space*3/2 - island_width/2, length + intersection_size/2)) #9
         self.sim.create_segment((intersection_size/2, lane_space/2 + island_width/2), (length+intersection_size/2, lane_space/2 + island_width/2))
-        self.sim.create_segment((intersection_size/2, lane_space*3/2 + island_width/2), (length+intersection_size/2, lane_space*3/2 + island_width/2))
+        self.sim.create_segment((intersection_size/2, lane_space*3/2 + island_width/2), (length+intersection_size/2, lane_space*3/2 + island_width/2)) #11
         self.sim.create_segment((lane_space/2 + island_width/2, -intersection_size/2), (lane_space/2 + island_width/2, -length - intersection_size/2))
-        self.sim.create_segment((lane_space*3/2 + island_width/2, -intersection_size/2), (lane_space*3/2 + island_width/2, -length-intersection_size/2))
+        self.sim.create_segment((lane_space*3/2 + island_width/2, -intersection_size/2), (lane_space*3/2 + island_width/2, -length-intersection_size/2)) #13
         self.sim.create_segment((-intersection_size/2, -lane_space/2 - island_width/2), (-length-intersection_size/2, -lane_space/2 - island_width/2))
-        self.sim.create_segment((-intersection_size/2, -lane_space*3/2 - island_width/2), (-length - intersection_size/2, -lane_space*3/2 - island_width/2))
+        self.sim.create_segment((-intersection_size/2, -lane_space*3/2 - island_width/2), (-length - intersection_size/2, -lane_space*3/2 - island_width/2)) #15
 
         # Straight
             #paths 16-23
@@ -89,19 +89,27 @@ class Intersection:
         self.sim.create_quadratic_bezier_curve((-intersection_size/2, lane_space*5/2 + island_width/2 - 10),(lane_space/2 + island_width/2, lane_space*5/2 + island_width/2 - 10),(lane_space/2 + island_width/2, -intersection_size/2))  #West to South
 
         #Dedicated Right-Turn Lanes (36-39) - added same way the as the left turn lanes
-        self.sim.create_segment((lane_space*5/2 + island_width/2  , length + intersection_size/2), (lane_space*5/2 + island_width/2 , intersection_size/2))  #South Approach
-        self.sim.create_segment((length + intersection_size/2, -lane_space*5/2 - island_width/2 ), (intersection_size/2, -lane_space*5/2 - island_width/2 ))  #East Approach
-        self.sim.create_segment((-lane_space*5/2 - island_width/2 , -length - intersection_size/2), (-lane_space*5/2 - island_width/2 , -intersection_size/2))  #North Approach
-        self.sim.create_segment((-length - intersection_size/2, lane_space*5/2 + island_width/2 ), (-intersection_size/2, lane_space*5/2 + island_width/2 ))  #West Approach
+        self.sim.create_segment((lane_space*5/2 + island_width/2  , length + intersection_size/2), (lane_space*5/2 + island_width/2 , intersection_size/2 + 10))  #South Approach
+        self.sim.create_segment((length + intersection_size/2, -lane_space*5/2 - island_width/2 ), (intersection_size/2 + 10, -lane_space*5/2 - island_width/2 ))  #East Approach
+        self.sim.create_segment((-lane_space*5/2 - island_width/2 , -length - intersection_size/2), (-lane_space*5/2 - island_width/2 , -intersection_size/2 -10))  #North Approach
+        self.sim.create_segment((-length - intersection_size/2, lane_space*5/2 + island_width/2 ), (-intersection_size/2 - 10, lane_space*5/2 + island_width/2 ))  #West Approach
 
         #these are the curves the right turning cars take
-        self.sim.create_quadratic_bezier_curve((lane_space*5/2 + island_width/2, intersection_size/2 ),(lane_space*5/2 + island_width/2, lane_space*5/2),(lane_space*5/2 + island_width/2, lane_space*5/2))
-        self.sim.create_quadratic_bezier_curve((intersection_size/2, -lane_space*5/2 - island_width/2),(lane_space*5/2, -lane_space*5/2 - island_width/2),(lane_space*5/2, -lane_space*5/2 - island_width/2))
-        self.sim.create_quadratic_bezier_curve((-lane_space*5/2 - island_width/2, -intersection_size/2),(-lane_space*5/2 - island_width/2, -lane_space*5/2),(-lane_space*5/2 - island_width/2, -lane_space*5/2))
-        self.sim.create_quadratic_bezier_curve((-intersection_size/2, lane_space*5/2 + island_width/2),(-lane_space*5/2, lane_space*5/2 + island_width/2),(-lane_space*5/2, lane_space*5/2 + island_width/2))
+        self.sim.create_quadratic_bezier_curve((lane_space*5/2 + island_width/2 , intersection_size/2 + 10),(lane_space*5/2 + island_width/2, lane_space*5/2),(lane_space*5/2 + island_width/2 +10, lane_space*5/2))
+        self.sim.create_quadratic_bezier_curve((intersection_size/2 + 10, -lane_space*5/2 - island_width/2 ),(lane_space*5/2, -lane_space*5/2 - island_width/2),(lane_space*5/2, -lane_space*5/2 - island_width/2 - 10))
+        self.sim.create_quadratic_bezier_curve((-lane_space*5/2 - island_width/2 , -intersection_size/2 -10),(-lane_space*5/2 - island_width/2, -lane_space*5/2),(-lane_space*5/2 - island_width/2 -10, -lane_space*5/2))
+        self.sim.create_quadratic_bezier_curve((-intersection_size/2 - 10, lane_space*5/2 + island_width/2),(-lane_space*5/2, lane_space*5/2 + island_width/2),(-lane_space*5/2, lane_space*5/2 + island_width/2 +10))
 
 
-    #all interfearing paths - original
+        #dont worry about these (44-47)
+        #they make it so that when the cars turn right they dont glitch back to the start of the road (make sure you have them in the right order tho)
+        self.sim.create_segment((-lane_space*3/2 - island_width/2, intersection_size/2), (-lane_space*3/2 - island_width/2, length + intersection_size/2)) #9
+        self.sim.create_segment((intersection_size/2, lane_space*3/2 + island_width/2), (length+intersection_size/2, lane_space*3/2 + island_width/2)) #11
+        self.sim.create_segment((lane_space*3/2 + island_width/2, -intersection_size/2), (lane_space*3/2 + island_width/2, -length-intersection_size/2)) #13
+        self.sim.create_segment((-intersection_size/2, -lane_space*3/2 - island_width/2), (-length - intersection_size/2, -lane_space*3/2 - island_width/2)) #15
+        
+
+        #all interfearing paths - original
     
         #left turn from the South intersects with the inner and outer straights coming from the North
         self.sim.define_interfearing_paths([0, 28], [4, 20],turn=True)
@@ -131,26 +139,26 @@ class Intersection:
                 #South [Inner Straight, Outer Straight, Right Turn, Left Turn] - change the left turn values to fix the path taken -4 on the value for the removed lanes
                 (1, {'path': [0, 16, 12], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
                 (1, {'path': [1, 17, 13], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
-                (1, {'path': [36, 40, 11], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
+                (1, {'path': [36, 40, 45], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
                 (1, {'path': [28, 32, 14], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
                 #remember -4 for the removed lanes!!!!! [entry, path, exit]
                 
                 #East [Inner Straight, Outer Straight, Right Turn, Left Turn]
                 (1, {'path': [2, 18, 14], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
                 (1, {'path': [3, 19, 15], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
-                (1, {'path': [37, 41, 13], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
+                (1, {'path': [37, 41, 46], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
                 (1, {'path': [29, 33, 8], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
 
                 #North [Inner Straight, Outer Straight, Right Turn, Left Turn]
                 (1, {'path': [4, 20, 8], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
                 (1, {'path': [5, 21, 9], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
-                (1, {'path': [38, 42, 15], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
+                (1, {'path': [38, 42, 47], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
                 (1, {'path': [30, 34, 10], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
            
                 #West [Inner Straight, Outer Straight, Right Turn, Left Turn]
                 (1, {'path': [6, 22, 10], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
                 (1, {'path': [7, 23, 11], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
-                (1, {'path': [39, 43, 9], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
+                (1, {'path': [39, 43, 44], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
                 (1, {'path': [31, 35, 12], 'v_max': self.v+ 2*self.speed_variance*np.random.random() -self.speed_variance}),
                 ], 'vehicle_rate' : self.vehicle_rate*(1-self.self_driving_vehicle_proportion) 
             })
