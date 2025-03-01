@@ -103,10 +103,12 @@ class Intersection:
 
         #dont worry about these (44-47)
         #they make it so that when the cars turn right they dont glitch back to the start of the road (make sure you have them in the right order tho)
-        self.sim.create_segment((-lane_space*3/2 - island_width/2, intersection_size/2), (-lane_space*3/2 - island_width/2, length + intersection_size/2)) #9
-        self.sim.create_segment((intersection_size/2, lane_space*3/2 + island_width/2), (length+intersection_size/2, lane_space*3/2 + island_width/2)) #11
-        self.sim.create_segment((lane_space*3/2 + island_width/2, -intersection_size/2), (lane_space*3/2 + island_width/2, -length-intersection_size/2)) #13
-        self.sim.create_segment((-intersection_size/2, -lane_space*3/2 - island_width/2), (-length - intersection_size/2, -lane_space*3/2 - island_width/2)) #15
+        #the offsets took so long to figure out it actually made me mad
+
+        self.sim.create_segment((-lane_space*3/2 - island_width/2, intersection_size/2 + 10), (-lane_space*3/2 - island_width/2, length + intersection_size/2 + 10)) #9 South
+        self.sim.create_segment((intersection_size/2 + 10, lane_space*3/2 + island_width/2), (length+intersection_size/2 + 10, lane_space*3/2 + island_width/2)) #11 East
+        self.sim.create_segment((lane_space*3/2 + island_width/2, -intersection_size/2 - 10), (lane_space*3/2 + island_width/2, -length-intersection_size/2 - 10)) #13 North 
+        self.sim.create_segment((-intersection_size/2 - 10, -lane_space*3/2 - island_width/2), (-length - intersection_size/2 - 10, -lane_space*3/2 - island_width/2)) #15 West
         
 
         #all interfearing paths - original
